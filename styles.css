@@ -27,3 +27,14 @@ h1 {
 .book-card h3 {
     margin-top: 0;
 }
+
+dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+dialog form label {
+    display: block;
+    margin-bottom: 0.75rem;
+}

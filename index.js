@@ -15,15 +15,9 @@ function addBookToLibrary(name, autor, release) {
     return myLibrary
 }
 
+function renderBooks() {
 
-addBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997)
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 1937)
-addBookToLibrary("Der Marsianer", "Andy Weir", 2011)
-addBookToLibrary("1984", "George Orwell", 1949)
-addBookToLibrary("Der Herr der Ringe", "J.R.R. Tolkien", 1954)
-addBookToLibrary("Die unendliche Geschichte", "Michael Ende", 1979)
-
-
+    document.getElementById("book-container").textContent = "";
 
 for (let i = 0; i < myLibrary.length; i++) {
 
@@ -43,6 +37,42 @@ for (let i = 0; i < myLibrary.length; i++) {
     div.appendChild(releaseParagraph)
 
     document.getElementById("book-container").appendChild(div)
+}}
+
+function handleAddBook() {
+    const nameInput = document.getElementById("input-name").value
+    const autorInput = document.getElementById("input-autor").value
+    const releaseInput = document.getElementById("input-release").value
+
+    addBookToLibrary(nameInput, autorInput, releaseInput)
+
+    document.getElementById("book-form").reset()
 
 }
+
+function setupDialogListeners() {
+    const dialog = document.getElementById("book-dialog")
+    const dialogButton = document.getElementById("new-book-btn")
+    const cancelButton = document.getElementById("cancel-btn")
+
+    dialogButton.addEventListener("click", () => {
+        dialog.showModal()
+    })
+
+    cancelButton.addEventListener("click", () => {
+        dialog.close();
+    })
+
+    document.getElementById("book-form").addEventListener("submit", (event) => {
+        event.preventDefault()
+        handleAddBook()
+        renderBooks()
+        dialog.close()
+    })
+
+
+}
+
+setupDialogListeners();
+
 

@@ -9,6 +9,18 @@
 <h1>Meine Bibliothek</h1>
 <div id="book-container"></div>
 
+<button id="new-book-btn">New Book</button>
+
+<dialog id="book-dialog">
+    <form id="book-form">
+        <label>Titel: <input type="text" id="input-name" required></label>
+        <label>Autor: <input type="text" id="input-autor" required></label>
+        <label>Erscheinungsjahr: <input type="number" id="input-release" required></label>
+        <button type="submit">Hinzufügen</button>
+        <button type="button" id="cancel-btn">Abbrechen</button>
+    </form>
+</dialog>
+
 <script src="index.js"></script>
 </body>
 </html>
