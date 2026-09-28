@@ -6,6 +6,7 @@ function Book(name, autor, release) {
     this.name = name;
     this.autor = autor;
     this.release = release;
+    this.read = false;
     this.UUID = crypto.randomUUID()
 }
 
@@ -16,6 +17,10 @@ function addBookToLibrary(name, autor, release) {
 
     myLibrary.push(book);
     return myLibrary
+}
+
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
 }
 
 // Zeigt alle Bücher aus myLibrary auf der Seite an.
@@ -50,6 +55,21 @@ for (let i = 0; i < myLibrary.length; i++) {
     deletebutton.addEventListener("click", (event) => {
         const id = event.target.parentElement.dataset.id
         handleDeleteBook(id)
+    })
+
+    const readbutton = document.createElement("button")
+    if (myLibrary[i].read === true) {
+        readbutton.textContent = "Read"
+        div.appendChild(readbutton)
+    } else {
+        readbutton.textContent = "Not Read"
+        div.appendChild(readbutton)
+    }
+
+    readbutton.addEventListener("click", (event) => {
+        const id = event.target.parentElement.dataset.id
+        myLibrary.find(book => book.UUID === id).toggleRead()
+        renderBooks()
     })
 
     document.getElementById("book-container").appendChild(div)
